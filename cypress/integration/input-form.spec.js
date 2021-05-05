@@ -10,16 +10,21 @@ describe("Input form", () => {
 
     it.only("Adds a new todo on submit", () => {
       const itemText = "Buy eggs";
-      cy.route("POST", "/api/todos", {
-        name: itemText,
-        id: 1,
-        isComplete: false,
-      });
+      //this is spying
+      // cy.route("POST", "/api/todos", {
+      //   name: "POST message 1",
+      //   id: 1,
+      //   isComplete: false,
+      // });
 
       cy.get(".new-todo")
-        .type(itemText)
+        .type(itemText + " 1")
         .type("{enter}")
         .should("have.value", "");
+      // cy.get(".new-todo")
+      //   .type(itemText + " 2")
+      //   .type("{enter}")
+      //   .should("have.value", "");
 
       cy.get(".todo-list li").should("have.length", 1).and("contain", itemText);
     });
@@ -40,7 +45,7 @@ describe("Input form", () => {
     });
   });
 
-  it.only("focuses input on load 0", () => {
+  it("focuses input on load 0", () => {
     cy.visit("http://localhost:3030");
 
     cy.focused().should("have.class", "new-todo");
@@ -50,7 +55,7 @@ describe("Input form", () => {
     cy.focused().should("have.class", "new-todo");
   });
 
-  it.only("accepts input", () => {
+  it("accepts input", () => {
     const typedText = "Buy Milssssssssssk";
 
     cy.get(".new-todo").type(typedText).should("have.value", typedText);
