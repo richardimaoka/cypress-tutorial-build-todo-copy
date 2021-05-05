@@ -51,7 +51,7 @@ describe("Input form", () => {
   });
 
   it.only("accepts input", () => {
-    const typedText = "Buy Milsssssssk";
+    const typedText = "Buy Milssssssssssk";
 
     cy.get(".new-todo").type(typedText).should("have.value", typedText);
   });
